@@ -11,6 +11,16 @@ on:
         type: string
         description: The Ruby or Rubies used in the matrix. Must be in format '["ruby.version"]'
 jobs:
+  job_a:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read package.json
+        id: package
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./testing.json
+      - name: Echo testing.json
+        run: echo "${{ steps.package.outputs.content }}"
   job1:
     runs-on: ubuntu-latest
     outputs:
