@@ -25,7 +25,7 @@ jobs:
         with:
           path: testing.json
       - name: Echo testing.json
-        run: echo "${{ steps.set-matrix.outputs.content }}" >> $GITHUB_OUTPUT
+        run: echo "matrix=${{ steps.set-matrix.outputs.content }}" >> $GITHUB_OUTPUT
   # job1:
   #   runs-on: ubuntu-latest
   #   outputs:
