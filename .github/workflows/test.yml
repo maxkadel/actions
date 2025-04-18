@@ -22,15 +22,15 @@ jobs:
         id: file_contents
         uses: juliangruber/read-file-action@v1
         with:
-          path: ./testing.json
-      - name: Echo testing.json
+          path: ./testing.txt
+      - name: Echo testing.txt
         id: matrix
         run: echo "matrix=${{ steps.file_contents.outputs.content }}" >> $GITHUB_OUTPUT
   job2:
     needs: job1
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{needs.job1.outputs.matrix}}
+      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
     steps:
     - run: echo ${{ matrix.project }}
     - run: echo ${{ matrix.config }}
