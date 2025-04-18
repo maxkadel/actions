@@ -25,7 +25,7 @@ jobs:
           path: ./testing.json
       - name: Echo testing.json
         id: matrix
-        run: echo "matrix=${{ steps.file_contents.outputs.content }}" >> $GITHUB_OUTPUT
+        run: echo "matrix='${{ steps.file_contents.outputs.content }}'" >> $GITHUB_OUTPUT
   job2:
     needs: job1
     runs-on: ubuntu-latest
