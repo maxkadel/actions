@@ -14,18 +14,18 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.ref }}
       - name: read from file
-        id: set-matrix
+        id: matrix
         uses: juliangruber/read-file-action@v1
         with:
           path: testing.json
       - name: Echo testing.json
-        run: echo "matrix=${{ steps.set-matrix.outputs.content }}" >> $GITHUB_OUTPUT
+        run: echo "matrix=${{ steps.matrix.outputs.content }}" >> $GITHUB_OUTPUT
   # job1:
   #   runs-on: ubuntu-latest
   #   outputs:
