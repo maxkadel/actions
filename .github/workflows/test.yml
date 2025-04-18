@@ -14,11 +14,14 @@ jobs:
   job_a:
     runs-on: ubuntu-latest
     steps:
-      - name: Read package.json
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+      - name: read from file
         id: package
         uses: juliangruber/read-file-action@v1
         with:
-          path: ./app/testing.json
+          path: testing.json
       - name: Echo testing.json
         run: echo "${{ steps.package.outputs.content }}"
   job1:
