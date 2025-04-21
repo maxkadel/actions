@@ -21,14 +21,14 @@ jobs:
       - name: Echo testing.json
         id: matrix
         run: |
-          echo 'MATRIX_JSON<<EOF' >> $GITHUB_OUTPUT
+          echo 'matrix_json<<EOF' >> $GITHUB_OUTPUT
           echo "matrix=$(cat testing.json)" >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
   job2:
     needs: job1
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{fromJson(needs.job1.outputs.matrix)}}
+      matrix: ${{fromJson(needs.job1.outputs.matrix_json.matrix)}}
     steps:
     - run: echo ${{ matrix.project }}
     - run: echo ${{ matrix.config }}
