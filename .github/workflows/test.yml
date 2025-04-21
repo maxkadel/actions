@@ -32,7 +32,7 @@ jobs:
     needs: job1
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{fromJson(needs.job1.outputs.matrix_json.matrix)}}
+      matrix: ${{fromJson(needs.job1.outputs.matrix_json)}}
     steps:
     - run: echo ${{ matrix.project }}
     - run: echo ${{ matrix.config }}
