@@ -21,9 +21,7 @@ jobs:
       - name: Read testing.json
         id: file_contents
         run: |
-          echo 'PACKAGE_JSON<<EOF' >> $GITHUB_ENV
-          cat ./testing.json >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
+          cat ./testing.json
       - name: Echo testing.json
         id: matrix
         run: echo "matrix=${{ steps.file_contents.outputs }}" >> $GITHUB_OUTPUT
