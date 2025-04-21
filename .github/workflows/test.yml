@@ -18,13 +18,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Read testing.json
-        id: file_contents
-        run: |
-          cat ./testing.json
+      # - name: Read testing.json
+      #   id: file_contents
+      #   run: |
+      #     cat ./testing.json
       - name: Echo testing.json
         id: matrix
-        run: echo "matrix=${{ steps.file_contents.outputs }}" >> $GITHUB_OUTPUT
+        run: echo "matrix=$(cat testing.json)" >> $GITHUB_OUTPUT
   job2:
     needs: job1
     runs-on: ubuntu-latest
