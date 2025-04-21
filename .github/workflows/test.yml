@@ -25,9 +25,9 @@ jobs:
           echo "matrix=$(cat testing.json)" >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
       - name: checking steps.matrix.outputs.matrix_json
-        run: echo ${{ steps.matrix.outputs.matrix_json }}
+        run: echo '${{ steps.matrix.outputs.matrix_json }}'
       - name: checking steps.matrix.outputs.matrix_json.matrix
-        run: echo ${{ steps.matrix.outputs.matrix_json.matrix }}
+        run: echo '${{ steps.matrix.outputs.matrix_json.matrix }}'
   job2:
     needs: job1
     runs-on: ubuntu-latest
