@@ -7,7 +7,7 @@ on:
         default: ''
         description: The branch or reference to run the workflow against
 jobs:
-  set_matrix_include:
+  set_matrix:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.matrix.outputs.matrix }}
@@ -23,12 +23,12 @@ jobs:
           cat ./.github/matrix.json >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
   test:
-    needs: set_matrix_include
+    needs: set_matrix
     runs-on: ubuntu-latest
     name: ruby ${{ matrix.ruby }} | rails ${{ matrix.rails_version }} ${{ matrix.additional_name }}
     strategy:
       fail-fast: false
-      matrix: ${{fromJson(needs.set_matrix_include.outputs.matrix)}}
+      matrix: ${{fromJson(needs.set_matrix.outputs.matrix)}}
     env:
       RAILS_VERSION: ${{ matrix.rails_version }}
       SOLR_VERSION: ${{ matrix.solr_version || 'latest' }}
