@@ -22,8 +22,6 @@ jobs:
           echo "matrix<<EOF" >> $GITHUB_OUTPUT
           cat ./.github/matrix.json >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-      - name: checking steps.matrix.outputs.matrix
-        run: echo '${{ steps.matrix.outputs.matrix }}'
   test:
     needs: set_matrix_include
     runs-on: ubuntu-latest
